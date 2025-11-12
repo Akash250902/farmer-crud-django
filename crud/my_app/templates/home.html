@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        body {
+            background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Poppins', sans-serif;
+        }
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.9);
+            min-height: 100vh;
+            padding: 30px;
+        }
+        .navbar {
+            background-color: rgba(0, 128, 0, 0.9);
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: 600;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+            text-align: center;
+        }
+        .btn-success, .btn-warning, .btn-danger {
+            border-radius: 8px;
+        }
+        h1 {
+            font-weight: 700;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'all_farmer' %}">🌾 Farmer Management</a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="{% url 'add_farmer' %}" class="nav-link">Add Farmer</a></li>
+                    <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="overlay">
+        <div class="container mt-4">
+            <h1 class="text-center mb-4">Farmer List</h1>
+
+            
+            <form method="GET" class="d-flex justify-content-center mb-4">
+                <input type="text" name="q" class="form-control w-50" placeholder="Search by name or crop" value="{{ request.GET.q }}">
+                <button type="submit" class="btn btn-success ms-2">Search</button>
+                <a href="{% url 'all_farmer' %}" class="btn btn-secondary ms-2">Reset</a>
+            </form>
+
+            
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover shadow">
+                    <thead class="table-success">
+                        <tr>
+                            <th>Name</th>
+                            <th>City</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Crop</th>
+                            <th>Quantity</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for e in forms %}
+                        <tr>
+                            <td>{{ e.farmer_name }}</td>
+                            <td>{{ e.f_district }}, {{ e.f_state }}</td>
+                            <td>{{ e.f_email }}</td>
+                            <td>{{ e.f_contact }}</td>
+                            <td>{{ e.f_crop }}</td>
+                            <td>{{ e.f_quantity }}</td>
+                            <td>
+                                <a href="{% url 'update_farmer' e.farmer_id %}" class="btn btn-warning btn-sm">Update</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'delete_farmer' e.farmer_id %}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-center text-danger">No farmers found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            
+            <div class="text-center mt-3">
+                <a href="{% url 'add_farmer' %}" class="btn btn-success px-4 py-2">+ Add Farmer</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

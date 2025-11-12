@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Farmer Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .overlay {
+            background: rgba(255, 255, 255, 0.9);
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .navbar {
+            background: rgba(0, 128, 0, 0.9);
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: 600;
+        }
+
+        .content {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        h2 {
+            font-weight: 700;
+            color: #2e7d32;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'all_farmer' %}">🌾 Farmer Management</a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="{% url 'all_farmer' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="{% url 'add_farmer' %}" class="nav-link">Add Farmer</a></li>
+                    <li class="nav-item"><a href="{% url 'about' %}" class="nav-link active">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="overlay">
+        <div class="container content">
+            <div class="card p-5">
+                <h2>About Farmer Management System</h2>
+                <p>
+                    The Farmer Management System is a Django-based web application designed to help manage farmer records efficiently. 
+                    It allows users to add, view, update, and delete farmer details such as name, contact, crop, and quantity.
+                </p>
+                <p>
+                    This project was created to simplify data handling for agricultural organizations, cooperatives, and NGOs working with farmers.
+                </p>
+                <p><strong>Technologies Used:</strong> Django, Python, Bootstrap, SQLite</p>
+                <p><strong>Developer:</strong> Akash S</p>
+                <a href="{% url 'all_farmer' %}" class="btn btn-success mt-3">⬅ Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
